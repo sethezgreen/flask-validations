@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="top-nav">
+        <h3>Coding Dojo Wall</h3>
+        <h3>Welcome {{session.first_name}}!</h3>
+        <a href="/logout">log out</a>
+    </div>
+    <div class="new-post">
+        <p>What's on your mind? Create a new post:</p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/posts/create" method="post">
+            <textarea name="content" id="" cols="100" rows="10"></textarea>
+            <button>publish</button>
+        </form>
+    </div>
+    <div class="all-posts">
+        <h1>All Community Posts</h1>
+        {% for post in all_posts %}
+            <p><strong>{{post.first_name}}</strong>  {{post.created_at}}</p>
+            <p>{{post.content}}
+            {% if post.user_id == session['user_id'] %}
+                <a href="/posts/{{post.id}}/delete"><button>delete</button></a>
+            {% endif %}
+            </p>
+        {% endfor %}
+    </div>
+</body>
+</html>

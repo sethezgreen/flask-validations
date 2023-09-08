@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+}
+
+label {
+    display: block;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.all-posts {
+    display: block;
+}
