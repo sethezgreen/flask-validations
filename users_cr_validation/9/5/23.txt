@@ -1,0 +1,13 @@
+always set on delete to cascade after creating sql db
+
+start with models when creating new app
+
+after exam:
+algo routine, api, ajax, 
+    go to linkedin and find job descriptions w what you're looking for and what additional things they prefer/require
+    incorporate new things into previous projects/a new projects
+    research tech podcasts ==> command line heroes
+
+
+security issues:
+    
