@@ -1,0 +1,21 @@
+.container {
+    padding: 15px;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    display: block;
+}
+
+input {
+    margin: 10px;
+}
+
+form {
+    width: fit-content;
+}

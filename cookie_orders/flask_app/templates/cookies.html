@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Cookie Orders</h1>
+        <div class="top-nav">
+            <h3>All Orders:</h3>
+            <a href="/cookies/new">+ New Order</a>
+        </div>
+        <table class="table table-striped border text-center">
+            <thead>
+                <tr>
+                    <td>Customer Name</td>
+                    <td>Cookie Type</td>
+                    <td>Number of Boxes</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in all_orders %}
+                <tr>
+                    <td>{{ order.customer_name }}</td>
+                    <td>{{ order.cookie_type }}</td>
+                    <td>{{ order.num_of_boxes }}</td>
+                    <td><a href="/cookies/edit/{{order.id}}">edit</a> | <a href="/cookies/delete/{{order.id}}" onclick="return confirm('Are you sure you want to delete this order')">delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

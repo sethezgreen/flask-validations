@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top-nav">
+            <h1>Change Order</h1>
+            <a href="/">Back to purchases</a>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/cookies/update" method="post">
+            <input type="hidden" name="id" value="{{order.id}}">
+            <label>
+                Customer Name:
+                <input type="text" name="customer_name" value="{{order.customer_name}}">
+            </label>
+            <label>
+                Cookie Type:
+                <select name="cookie_type">
+                    <option value="" selected disabled hidden>Choose cookie</option>
+                    <option value="Thin Mints">Thin Mints</option>
+                    <option value="Tagalongs">Tagalongs</option>
+                    <option value="Adventurefuls">Adventurefuls</option>
+                    <option value="Lemonades">Lemonades</option>
+                    <option value="Peanut Butter">Peanut Butter</option>
+                    <option value="Shortbread">Shortbread</option>
+                    <option value="Caramel Delights">Caramel Delights</option>
+                </select>
+                (previously {{order.cookie_type}})
+            </label>
+            <label>
+                Number of Boxes:
+                <input type="number" name="num_of_boxes" value="{{order.num_of_boxes}}">
+            </label>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->
